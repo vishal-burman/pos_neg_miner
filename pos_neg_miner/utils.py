@@ -1,4 +1,6 @@
-from typing import List, Tuple
+from typing import Callable, List, Tuple
+
+import numpy as np
 
 
 def sanitate_text(text: str) -> str:
@@ -14,3 +16,13 @@ def validate_queries_and_candidates(
         raise ValueError(f"Candidates or Queries cannot be zero!")
 
     return queries, candidates
+
+
+def validate_queries_and_candidates_embeddings(
+    queries_embeds: np.ndarray, candidates_embeds: np.ndarray
+):
+    assert queries_embeds.ndim == 2, f"Embeddings should be 2-dimensional"
+    assert candidates_embeds.ndim == 2, f"Embeddings should be 2-dimensional"
+    assert (
+        queries_embeds.shape[1] == candidates_embeds.shape[1]
+    ), f"Queries and Candidate embeddings do not match: {queries_embeds.shape[1]}!={candidates_embeds.shape[1]}"
