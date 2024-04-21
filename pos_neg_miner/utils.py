@@ -3,6 +3,10 @@ from typing import Callable, List, Tuple
 import numpy as np
 
 
+def normalize_embeddings(embeds: np.ndarray) -> np.ndarray:
+    return embeds / np.linalg.norm(embeds)
+
+
 def sanitate_text(text: str) -> str:
     return text.strip()
 
@@ -20,7 +24,7 @@ def validate_queries_and_candidates(
 
 def validate_queries_and_candidates_embeddings(
     queries_embeds: np.ndarray, candidates_embeds: np.ndarray
-):
+) -> None:
     assert queries_embeds.ndim == 2, f"Embeddings should be 2-dimensional"
     assert candidates_embeds.ndim == 2, f"Embeddings should be 2-dimensional"
     assert (
