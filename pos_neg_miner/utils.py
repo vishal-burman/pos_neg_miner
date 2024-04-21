@@ -3,7 +3,7 @@ from typing import Callable, List, Tuple
 import numpy as np
 
 
-def normalize_embeddings(embeds: np.ndarray) -> np.ndarray:
+def get_normalized_embeddings(embeds: np.ndarray) -> np.ndarray:
     return embeds / np.linalg.norm(embeds)
 
 
