@@ -1,6 +1,6 @@
 from typing import Callable, List
 
-from utils import (
+from .utils import (
     validate_queries_and_candidates,
     validate_queries_and_candidates_embeddings,
     get_normalized_embeddings
