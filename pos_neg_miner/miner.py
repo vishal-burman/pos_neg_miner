@@ -3,6 +3,7 @@ from typing import Callable, List
 from utils import (
     validate_queries_and_candidates,
     validate_queries_and_candidates_embeddings,
+    normalize_embeddings
 )
 
 
@@ -12,7 +13,11 @@ class Miner:
     ):
         pass
 
-    def __call__(self, queries: List[str], candidates: List[str], embedder: Callable):
+    def __call__(self,
+                 queries: List[str],
+                 candidates: List[str],
+                 embedder: Callable,
+                 normalize_embeddings: bool):
         queries, candidates = validate_queries_and_candidates(
             queries=queries, candidates=candidates
         )
@@ -21,3 +26,5 @@ class Miner:
         validate_queries_and_candidates_embeddings(
             queries_embeds=queries_embeds, candidates_embeds=candidates_embeds
         )
+        if normalize_embeddings:
+            queries_embeds, candidates_embeds = normalize_embeddings(queries_embeds), normalize_embeddings(candidates_embeds)
