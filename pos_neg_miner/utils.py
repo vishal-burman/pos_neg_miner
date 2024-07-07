@@ -53,6 +53,12 @@ def validate_queries_and_candidates(queries: List[str], candidates: List[str]) -
 
 
 def validate_queries_and_candidates_embeddings(queries_embeds: NDArray, candidates_embeds: NDArray) -> None:
+    """Validate shape and dimensions of query and candidates embeddings.
+
+    Args:
+        queries_embeds: Numpy array of queries embeddings.
+        candidates_embeds: Numpy array of candidates embeddings.
+    """
     assert queries_embeds.ndim == 2, f"Embeddings should be 2-dimensional"
     assert candidates_embeds.ndim == 2, f"Embeddings should be 2-dimensional"
     assert (
